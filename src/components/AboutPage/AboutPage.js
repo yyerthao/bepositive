@@ -8,7 +8,28 @@ import React from 'react';
 const AboutPage = () => (
   <div className="container">
     <div>
-      <p>This about page is for anyone to read!</p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.Quod, quae voluptatibus quisquam consectetur nemo 
+        laudantium ratione inventore nostrum magni doloribus similique maiores obcaecati officiis delectus, soluta 
+        officia explicabo dolorum repudiandae.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.Quod, quae voluptatibus quisquam consectetur nemo 
+        laudantium ratione inventore nostrum magni doloribus similique maiores obcaecati officiis delectus, soluta 
+        officia explicabo dolorum repudiandae.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.Quod, quae voluptatibus quisquam consectetur nemo 
+        laudantium ratione inventore nostrum magni doloribus similique maiores obcaecati officiis delectus, soluta 
+        officia explicabo dolorum repudiandae.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.Quod, quae voluptatibus quisquam consectetur nemo 
+        laudantium ratione inventore nostrum magni doloribus similique maiores obcaecati officiis delectus, soluta 
+        officia explicabo dolorum repudiandae.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.Quod, quae voluptatibus quisquam consectetur nemo 
+        laudantium ratione inventore nostrum magni doloribus similique maiores obcaecati officiis delectus, soluta 
+        officia explicabo dolorum repudiandae.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.Quod, quae voluptatibus quisquam consectetur nemo 
+        laudantium ratione inventore nostrum magni doloribus similique maiores obcaecati officiis delectus, soluta 
+        officia explicabo dolorum repudiandae.
+      </p>
     </div>
   </div>
 );
