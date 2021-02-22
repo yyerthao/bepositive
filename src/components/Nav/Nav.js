@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import Logo from '../../Images/card.png';
 
 const Nav = (props) => {
   let loginLinkData = {
@@ -19,7 +20,8 @@ const Nav = (props) => {
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">Be+</h2>
+        <img className="logo" src={Logo}/>
+        {/* <h2 className="nav-title">Be+</h2> */}
       </Link>
       <div className="nav-right">
         <Link className="nav-link" to={loginLinkData.path}>
