@@ -7,7 +7,7 @@ class Messages extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit.Quod, quae voluptatibus quisquam consectetur nemo 
           laudantium ratione inventore nostrum magni doloribus similique maiores obcaecati officiis delectus, soluta 
