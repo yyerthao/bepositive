@@ -68,61 +68,65 @@ handleExpandClick = () => {
 
     return (
       <div className="container">
-      <Card className={classes.card}>
-              <CardHeader
-                avatar={
-                  <Avatar aria-label="Recipe" className={classes.avatar}>
-                    B
-                  </Avatar>
-                }
-                action={
-                  <IconButton>
-                    <MoreVertIcon />
-                  </IconButton>
-                }
-                title={messageReducer.name}
-                subheader="SOME RANDOM DATE"
-              />
-              <CardMedia
-                className={classes.media}
-                image={messageReducer.image}
-                title="Happy things"
-              />
-              <CardContent>
-                <Typography component="p">
-                  {messageReducer.details}
-                </Typography>
-              </CardContent>
-              <CardActions className={classes.actions} disableActionSpacing>
-                <IconButton aria-label="Add to favorites">
-                  <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="Share">
-                  <ShareIcon />
-                </IconButton>
-                <IconButton
-                  className={classnames(classes.expand, {
-                    [classes.expandOpen]: this.state.expanded,
-                  })}
-                  onClick={this.handleExpandClick}
-                  aria-expanded={this.state.expanded}
-                  aria-label="Show more"
-                >
-                  <ExpandMoreIcon />
-                </IconButton>
-              </CardActions>
-              <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-                <CardContent>
-                  <Typography paragraph>More Happyness:</Typography>
-                  <Typography paragraph>
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et repellat earum ea mollitia, at saepe! 
-                      Accusantium, magnam natus provident obcaecati aut cumque illo, exercitationem vel sapiente, consequuntur 
-                      nulla officia cum!Lorem
-                  </Typography>
-                </CardContent>
-              </Collapse>
-            </Card>
-        </div>
+        {messageReducer.map((message, i) => {
+          return (
+            <Card className={classes.card} key={i}>
+                    <CardHeader
+                      avatar={
+                        <Avatar aria-label="Recipe" className={classes.avatar}>
+                          B
+                        </Avatar>
+                      }
+                      action={
+                        <IconButton>
+                          <MoreVertIcon />
+                        </IconButton>
+                      }
+                      title={message.name}
+                      subheader="SOME RANDOM DATE"
+                    />
+                    <CardMedia
+                      className={classes.media}
+                      image={message.image}
+                      alt="Happy things"
+                    />
+                    <CardContent>
+                      <Typography component="p">
+                        {message.details}
+                      </Typography>
+                    </CardContent>
+                    <CardActions className={classes.actions}>
+                      <IconButton aria-label="Add to favorites">
+                        <FavoriteIcon />
+                      </IconButton>
+                      <IconButton aria-label="Share">
+                        <ShareIcon />
+                      </IconButton>
+                      <IconButton
+                        className={classnames(classes.expand, {
+                          [classes.expandOpen]: this.state.expanded,
+                        })}
+                        onClick={this.handleExpandClick}
+                        aria-expanded={this.state.expanded}
+                        aria-label="Show more"
+                      >
+                        <ExpandMoreIcon />
+                      </IconButton>
+                    </CardActions>
+                    <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                      <CardContent>
+                        <Typography paragraph>More Happyness:</Typography>
+                        <Typography paragraph>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et repellat earum ea mollitia, at saepe! 
+                            Accusantium, magnam natus provident obcaecati aut cumque illo, exercitationem vel sapiente, consequuntur 
+                            nulla officia cum!Lorem
+                        </Typography>
+                      </CardContent>
+                    </Collapse>
+                </Card>
+            )
+        })}
+      </div>
     );
   }
 }
