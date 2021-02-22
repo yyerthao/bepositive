@@ -19,6 +19,8 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
+// TO DO:
+// Add functions for icons on card
 
 
 
