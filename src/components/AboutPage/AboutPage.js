@@ -30,6 +30,8 @@ const AboutPage = () => (
         laudantium ratione inventore nostrum magni doloribus similique maiores obcaecati officiis delectus, soluta 
         officia explicabo dolorum repudiandae.
       </p>
+      {/* <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
+
     </div>
   </div>
 );
