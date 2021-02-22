@@ -15,17 +15,7 @@ componentDidMount(){
     return (
       <div className="container">
         {JSON.stringify(messageReducer)}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.Quod, quae voluptatibus quisquam consectetur nemo 
-          laudantium ratione inventore nostrum magni doloribus similique maiores obcaecati officiis delectus, soluta 
-          officia explicabo dolorum repudiandae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.Quod, quae voluptatibus quisquam consectetur nemo 
-          laudantium ratione inventore nostrum magni doloribus similique maiores obcaecati officiis delectus, soluta 
-          officia explicabo dolorum repudiandae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.Quod, quae voluptatibus quisquam consectetur nemo 
-          laudantium ratione inventore nostrum magni doloribus similique maiores obcaecati officiis delectus, soluta 
-          officia explicabo dolorum repudiandae.
-        </p>
+        <p>{messageReducer.details}</p>
       </div>
     )
   }
