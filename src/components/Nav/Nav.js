@@ -20,7 +20,7 @@ const Nav = (props) => {
   return (
     <div className="nav">
       <Link to="/home">
-        <img className="logo" src={Logo}/>
+        <img className="logo" src={Logo} alt="Happyer Logo"/>
         {/* <h2 className="nav-title">Be+</h2> */}
       </Link>
       <div className="nav-right">
