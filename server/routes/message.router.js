@@ -13,7 +13,7 @@ let sqlText =
     WHERE "user".id = $1;`
   pool.query(sqlText, [req.user.id])
     .then((result) => {
-      res.send(result.rows[0]);
+      res.send(result.rows);
     }).catch((error) => {
       console.log('Error fetching message', error);
       res.sendStatus(500);
