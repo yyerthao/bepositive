@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  }
+});
 
 class RegisterForm extends Component {
   state = {
@@ -27,6 +35,7 @@ class RegisterForm extends Component {
   };
 
   render() {
+    const {classes} = this.props;
     return (
       <form className="formPanel" onSubmit={this.registerUser}>
         <h2>Register User</h2>
@@ -60,11 +69,11 @@ class RegisterForm extends Component {
           </label>
         </div>
         <div>
-          <input className="btn" type="submit" name="submit" value="Register" />
+          <Button className={classes.button} type="submit" name="submit" value="Register" color="primary" variant="contained">Register</Button>
         </div>
       </form>
     );
   }
 }
 
-export default connect(mapStoreToProps)(RegisterForm);
+export default connect(mapStoreToProps)(withStyles(styles)(RegisterForm));
