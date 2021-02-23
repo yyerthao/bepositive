@@ -61,7 +61,7 @@ class Messages extends Component {
 
  state = {
     expanded: false,
-    spacing: '16'
+    spacing: '10'
  };
 
 componentDidMount(){
@@ -78,7 +78,7 @@ handleExpandClick = () => {
             const { spacing } = this.state.spacing;
 
     return (
-      <div className="container">
+      <div className="container center">
           <Grid container className={classes.root} spacing={10}>
             <Grid item xs={10} >
               <Grid container className="center" spacing={(spacing)}>
@@ -146,7 +146,7 @@ handleExpandClick = () => {
                     </Collapse>
                 </Card>
             )
-        })}
+          })}
         </Grid>
       </div>
     );
