@@ -18,6 +18,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+
+
 
 // TO DO:
 // Add functions for icons on card
@@ -48,11 +52,17 @@ const styles = theme => ({
   avatar: {
     backgroundColor: red[500],
   },
+  root: {
+    flexGrow: 1,
+  },
 });
 
 class Messages extends Component {
 
- state = { expanded: false };
+ state = {
+    expanded: false,
+    spacing: '16'
+ };
 
 componentDidMount(){
   this.props.dispatch({type: 'FETCH_MESSAGE'});
@@ -65,9 +75,20 @@ handleExpandClick = () => {
   render() {
     const {messageReducer} = this.props.store;
         const { classes } = this.props;
+            const { spacing } = this.state.spacing;
 
     return (
       <div className="container">
+          <Grid container className={classes.root} spacing={10}>
+            <Grid item xs={10} >
+              <Grid container className="center" spacing={(spacing)}>
+                {[0, 1, 2].map(value => (
+                  <Grid key={value} item>
+                    <Paper className="center"/>
+                  </Grid>
+                ))}
+            </Grid>
+          </Grid>
         {messageReducer.map((message, i) => {
           return (
             <Card className={classes.card} key={i}>
@@ -126,6 +147,7 @@ handleExpandClick = () => {
                 </Card>
             )
         })}
+        </Grid>
       </div>
     );
   }
