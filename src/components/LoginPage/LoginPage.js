@@ -2,27 +2,36 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import LoginForm from '../LoginForm/LoginForm';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  }
+});
 
 class LoginPage extends Component {
   render() {
+    const {classes} = this.props;
     return (
       <div>
         <LoginForm />
 
         <center>
-          <button
-            type="button"
-            className="btn btn_asLink"
+          <Button
+            variant="contained"
+            className={classes.button}
             onClick={() => {
-              this.props.history.push('/registration');
+            this.props.history.push('/registration');
             }}
           >
             Register
-          </button>
+          </Button>
         </center>
       </div>
     );
   }
 }
 
-export default connect(mapStoreToProps)(LoginPage);
+export default connect(mapStoreToProps)(withStyles(styles)(LoginPage));
