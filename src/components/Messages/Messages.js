@@ -31,6 +31,10 @@ import Paper from '@material-ui/core/Paper';
 const styles = theme => ({
   card: {
     maxWidth: 400,
+    marginLeft: 15,
+    marginRight: 15,
+    marginTop: 15,
+    marginBottom: 15
   },
   media: {
     height: 0,
@@ -78,7 +82,7 @@ handleExpandClick = () => {
             const { spacing } = this.state.spacing;
 
     return (
-      <div className="container center">
+      <div className="container messenger-background">
           <Grid container className={classes.root} spacing={10}>
             <Grid item xs={10} >
               <Grid container className="center" spacing={(spacing)}>
@@ -123,7 +127,7 @@ handleExpandClick = () => {
                       <IconButton aria-label="Share">
                         <ShareIcon />
                       </IconButton>
-                      <IconButton
+                      {/* <IconButton
                         className={classnames(classes.expand, {
                           [classes.expandOpen]: this.state.expanded,
                         })}
@@ -132,7 +136,7 @@ handleExpandClick = () => {
                         aria-label="Show more"
                       >
                         <ExpandMoreIcon />
-                      </IconButton>
+                      </IconButton> */}
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                       <CardContent>
