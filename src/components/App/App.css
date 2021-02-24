@@ -5,7 +5,7 @@ body,
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   margin: 0px;
 }
 
@@ -21,6 +21,8 @@ Container
 .container {
   padding: 0rem 5rem;
 }
+
+
 
 /* --------------------------------------------------------------------------------
 Button
