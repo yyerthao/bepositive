@@ -23,6 +23,12 @@ class LandingPage extends Component {
     const { classes } = this.props;
     return (
       <div className="container">
+          <center>
+            <h1>The Happyer App</h1>
+            {/* WILL BE INSERTING A FEATURE BAR HERE */}
+              <p>The app where you leave happyer than when you came.</p>
+          </center>
+          <br></br>
             <RegisterForm />
             <center>
               <h4>Already a Member?</h4>
