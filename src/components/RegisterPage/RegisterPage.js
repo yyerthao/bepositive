@@ -21,8 +21,12 @@ class RegisterPage extends Component {
     const {classes} = this.props;
     return (
       <div>
+        <center>
+          <h1>The Happyer App</h1>
+          {/* WILL BE INSERTING A FEATURE BAR HERE */}
+            <p>The app where you leave happyer than when you came.</p>
+        </center>
         <RegisterForm />
-
         <center>
           <Button
             variant="contained"
