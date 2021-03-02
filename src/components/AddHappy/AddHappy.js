@@ -4,7 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
+// import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 
@@ -45,12 +45,22 @@ handleChange = (event, input) => {
     [input]: event.target.value
   })
 }
+
+cancelSubmit = () =>{
+  console.log('Cancelling submit')
+}
+
+submitHappyness = () =>{
+  console.log('Submitting happyness')
+}
+
+
   render() {
     const {classes} = this.props;
     return (
       <div className="container">
         <h2>Add Some Happyness</h2>
-        {JSON.stringify(this.props.store.genreReducer)}
+        {/* {JSON.stringify(this.props.store.genreReducer)} */}
           <form>
             <TextField
               id="standard-name"
@@ -62,7 +72,7 @@ handleChange = (event, input) => {
             />
             <br></br>
             <TextField
-              id="standard-name"
+              id="standard-image"
               label="Image Url"
               className={classes.textField}
               value={this.state.image}
@@ -71,7 +81,7 @@ handleChange = (event, input) => {
             />
             <br></br>
             <TextField
-              id="standard-name"
+              id="standard-details"
               label="Details"
               className={classes.textField}
               value={this.state.details}
@@ -95,10 +105,10 @@ handleChange = (event, input) => {
               </Select>
           <br></br>           
           <br></br>           
-          <button>Share happyness</button>
+          <button onClick={this.submitHappyness}>Share happyness</button>
           <br></br>           
           <br></br>  
-          <button>Cancel</button>
+          <button onClick={this.cancelSubmit}>Cancel</button>
 
 
 
