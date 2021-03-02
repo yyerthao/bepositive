@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+
 
 
 const styles = theme => ({
@@ -69,9 +74,30 @@ handleChange = (event, input) => {
               margin="normal"
             />
           </form>
+          <FormControl className={classes.formControl}>
+            <InputLabel htmlFor="age-simple">Age</InputLabel>
+            <Select
+              value={this.state.age}
+              onChange={this.handleChange}
+              inputProps={{
+                name: 'age',
+                id: 'age-simple',
+              }}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>Positive</MenuItem>
+              <MenuItem value={20}>Uplifting</MenuItem>
+              <MenuItem value={30}>Supportive</MenuItem>
+              <MenuItem value={40}>Love</MenuItem>
+            </Select>
+          </FormControl>
       </div>
     );
   }
 }
 
 export default connect(mapStoreToProps)(withStyles(styles)(AddHappy));
+
+// INSERT INTO genre(id, name) VALUES(1, 'Positive'), (2, 'Uplifting'), (3, 'Supportive'), (4, 'Love');
