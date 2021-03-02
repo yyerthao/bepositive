@@ -63,6 +63,7 @@ submitHappyness = () =>{
         {/* {JSON.stringify(this.props.store.genreReducer)} */}
           <form>
             <TextField
+              style={{maxWidth: '100%'}}
               id="standard-name"
               label="Name"
               className={classes.textField}
@@ -72,6 +73,7 @@ submitHappyness = () =>{
             />
             <br></br>
             <TextField
+              style={{maxWidth: '100%'}}
               id="standard-image"
               label="Image Url"
               className={classes.textField}
