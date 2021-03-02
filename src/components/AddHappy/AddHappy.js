@@ -79,7 +79,6 @@ handleChange = (event, input) => {
               margin="normal"
             />
           </form>
-          <FormControl>
               <InputLabel>
                   Genre
               </InputLabel>
@@ -94,7 +93,17 @@ handleChange = (event, input) => {
                           {genre.name}
                       </MenuItem>)}
               </Select>
-          </FormControl>
+          <br></br>           
+          <br></br>           
+          <button>Share happyness</button>
+          <br></br>           
+          <br></br>  
+          <button>Cancel</button>
+
+
+
+
+
       </div>
     );
   }
