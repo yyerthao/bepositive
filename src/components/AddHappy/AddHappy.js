@@ -23,6 +23,7 @@ const styles = theme => ({
 
 class AddHappy extends Component {
   state = {
+    name: '',
     image: '',
     details: '',
     genre_id: ''
@@ -45,7 +46,7 @@ handleChange = (event, input) => {
               id="standard-name"
               label="Name"
               className={classes.textField}
-              value={this.state.details}
+              value={this.state.name}
               onChange={(event)=> this.handleChange(event, 'name')}
               margin="normal"
             />
