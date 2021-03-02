@@ -10,7 +10,7 @@ class UserPage extends Component {
         <center>
           <h1 id="welcome">Hello, {this.props.store.user.username}!</h1>
           {/* <p>Your ID is: {this.props.store.user.id}</p> */}
-          <img src={ProfilePhoto} alt="Profile photo of user"/><br></br><h6>This is your profile photo</h6>
+          <img src={ProfilePhoto} alt="User profile"/><br></br><h6>This is your profile photo</h6>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.Quod, quae voluptatibus quisquam consectetur nemo 
             laudantium ratione inventore nostrum magni doloribus similique maiores obcaecati officiis delectus, soluta 
