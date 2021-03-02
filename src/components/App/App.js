@@ -19,6 +19,7 @@ import Messages from '../Messages/Messages';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import AddHappy from '../AddHappy/AddHappy';
 
 import './App.css';
 
@@ -60,6 +61,13 @@ class App extends Component {
               exact
               path="/messages"
               component={Messages}
+            />
+
+            <ProtectedRoute
+              // logged in shows InfoPage else shows LoginPage
+              exact
+              path="/AddHappy"
+              component={AddHappy}
             />
 
             {/* When a value is supplied for the authRedirect prop the user will
