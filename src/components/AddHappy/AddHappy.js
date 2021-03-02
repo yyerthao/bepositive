@@ -34,6 +34,10 @@ class AddHappy extends Component {
     genre_id: ''
   };
 
+componentDidMount(){
+  this.props.dispatch({type: 'FETCH_GENRES'})
+}
+
 handleChange = (event, input) => {
   console.log('Details of message:', this.state);
   this.setState({
@@ -46,6 +50,7 @@ handleChange = (event, input) => {
     return (
       <div className="container">
         <h2>Add Some Happyness</h2>
+        {JSON.stringify(this.props.store.genreReducer)}
           <form>
             <TextField
               id="standard-name"
