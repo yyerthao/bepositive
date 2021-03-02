@@ -79,24 +79,21 @@ handleChange = (event, input) => {
               margin="normal"
             />
           </form>
-          <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="age-simple">Age</InputLabel>
-            <Select
-              value={this.state.age}
-              onChange={this.handleChange}
-              inputProps={{
-                name: 'age',
-                id: 'age-simple',
-              }}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Positive</MenuItem>
-              <MenuItem value={20}>Uplifting</MenuItem>
-              <MenuItem value={30}>Supportive</MenuItem>
-              <MenuItem value={40}>Love</MenuItem>
-            </Select>
+          <FormControl>
+              <InputLabel>
+                  Genre
+              </InputLabel>
+              <Select 
+                  className="dropdown"
+                  value={this.state.genre_id} 
+                  onChange={(event) => this.handleChange(event, 'genre_id')}>
+{/* ----------------------------------------------- MAPPING OUT ARRAY OF GENRES REDUCER */}
+                  
+                  {this.props.store.genreReducer.map((genre, i) =>
+                      <MenuItem key={i} value={genre.id}>
+                          {genre.name}
+                      </MenuItem>)}
+              </Select>
           </FormControl>
       </div>
     );
