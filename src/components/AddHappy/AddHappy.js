@@ -80,14 +80,15 @@ submitHappyness = () =>{
               margin="normal"
             />
             <br></br>
-            <TextField
-              id="standard-details"
-              label="Details"
-              className={classes.textField}
+            <textarea
+              rows="10" 
+              cols="80"
+              id="textarea"
+              type="text" 
+              placeholder="Enter happy message here"
               value={this.state.details}
-              onChange={(event)=> this.handleChange(event, 'details')}
-              margin="normal"
-            />
+              onChange={(event) => this.handleChange (event, 'details')}>
+            </textarea><br></br>
           </form>
               <InputLabel>
                   Genre
