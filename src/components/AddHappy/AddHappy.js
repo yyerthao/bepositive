@@ -4,7 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
+// import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 
@@ -34,6 +34,10 @@ class AddHappy extends Component {
     genre_id: ''
   };
 
+componentDidMount(){
+  this.props.dispatch({type: 'FETCH_GENRES'})
+}
+
 handleChange = (event, input) => {
   console.log('Details of message:', this.state);
   this.setState({
@@ -41,13 +45,25 @@ handleChange = (event, input) => {
     [input]: event.target.value
   })
 }
+
+cancelSubmit = () =>{
+  console.log('Cancelling submit')
+}
+
+submitHappyness = () =>{
+  console.log('Submitting happyness')
+}
+
+
   render() {
     const {classes} = this.props;
     return (
       <div className="container">
         <h2>Add Some Happyness</h2>
+        {/* {JSON.stringify(this.props.store.genreReducer)} */}
           <form>
             <TextField
+              style={{maxWidth: '100%'}}
               id="standard-name"
               label="Name"
               className={classes.textField}
@@ -57,7 +73,8 @@ handleChange = (event, input) => {
             />
             <br></br>
             <TextField
-              id="standard-name"
+              style={{maxWidth: '100%'}}
+              id="standard-image"
               label="Image Url"
               className={classes.textField}
               value={this.state.image}
@@ -65,34 +82,41 @@ handleChange = (event, input) => {
               margin="normal"
             />
             <br></br>
-            <TextField
-              id="standard-name"
-              label="Details"
-              className={classes.textField}
+            <textarea
+              rows="10" 
+              cols="80"
+              id="textarea"
+              type="text" 
+              placeholder="Enter happy message here"
               value={this.state.details}
-              onChange={(event)=> this.handleChange(event, 'details')}
-              margin="normal"
-            />
+              onChange={(event) => this.handleChange (event, 'details')}>
+            </textarea><br></br>
           </form>
-          <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="age-simple">Age</InputLabel>
-            <Select
-              value={this.state.age}
-              onChange={this.handleChange}
-              inputProps={{
-                name: 'age',
-                id: 'age-simple',
-              }}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Positive</MenuItem>
-              <MenuItem value={20}>Uplifting</MenuItem>
-              <MenuItem value={30}>Supportive</MenuItem>
-              <MenuItem value={40}>Love</MenuItem>
-            </Select>
-          </FormControl>
+              <InputLabel>
+                  Genre
+              </InputLabel>
+              <Select 
+                  className="dropdown"
+                  value={this.state.genre_id} 
+                  onChange={(event) => this.handleChange(event, 'genre_id')}>
+{/* ----------------------------------------------- MAPPING OUT ARRAY OF GENRES REDUCER */}
+                  
+                  {this.props.store.genreReducer.map((genre, i) =>
+                      <MenuItem key={i} value={genre.id}>
+                          {genre.name}
+                      </MenuItem>)}
+              </Select>
+          <br></br>           
+          <br></br>           
+          <button onClick={this.submitHappyness}>Share happyness</button>
+          <br></br>           
+          <br></br>  
+          <button onClick={this.cancelSubmit}>Cancel</button>
+
+
+
+
+
       </div>
     );
   }
