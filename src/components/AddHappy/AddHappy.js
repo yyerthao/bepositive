@@ -59,43 +59,48 @@ submitHappyness = () =>{
     const {classes} = this.props;
     return (
       <div className="container">
-        <h2>Add Some Happyness</h2>
-        {/* {JSON.stringify(this.props.store.genreReducer)} */}
-          <form>
-            <TextField
-              style={{maxWidth: '100%'}}
-              id="standard-name"
-              label="Name"
-              className={classes.textField}
-              value={this.state.name}
-              onChange={(event)=> this.handleChange(event, 'name')}
-              margin="normal"
-            />
-            <br></br>
-            <TextField
-              style={{maxWidth: '100%'}}
-              id="standard-image"
-              label="Image Url"
-              className={classes.textField}
-              value={this.state.image}
-              onChange={(event)=> this.handleChange(event, 'image')}
-              margin="normal"
-            />
-            <br></br>
-            <textarea
-              rows="10" 
-              cols="80"
-              id="textarea"
-              type="text" 
-              placeholder="Enter happy message here"
-              value={this.state.details}
-              onChange={(event) => this.handleChange (event, 'details')}>
-            </textarea><br></br>
-          </form>
+        <center>
+          <h2>Add Some Happyness</h2>
+        </center>
+          <div className="flex-grid">
+            <div className="col">
+              <TextField
+                style={{width: '25rem'}}
+                id="standard-name"
+                label="Name"
+                className={classes.textField}
+                value={this.state.name}
+                onChange={(event)=> this.handleChange(event, 'name')}
+                margin="normal"
+              />
+              <br></br>
+              <TextField
+                style={{width: '25rem'}}
+                id="standard-image"
+                label="Image Url"
+                className={classes.textField}
+                value={this.state.image}
+                onChange={(event)=> this.handleChange(event, 'image')}
+                margin="normal"
+              />
+            </div>
+            <div className="col">
+              <textarea
+                rows="10" 
+                cols="80"
+                id="textarea"
+                type="text" 
+                placeholder="Enter happy message here"
+                value={this.state.details}
+                onChange={(event) => this.handleChange (event, 'details')}>
+              </textarea>
+            </div>
+          </div>
               <InputLabel>
                   Genre
               </InputLabel>
               <Select 
+                  style={{width: '10rem'}}
                   className="dropdown"
                   value={this.state.genre_id} 
                   onChange={(event) => this.handleChange(event, 'genre_id')}>
