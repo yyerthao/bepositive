@@ -18,7 +18,7 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.y,
     marginRight: theme.spacing.y,
-    width: 200,
+    width: 500,
   },
   dense: {
     marginTop: 19,
@@ -52,6 +52,7 @@ cancelSubmit = () =>{
 
 submitHappyness = () =>{
   console.log('Submitting happyness')
+  this.props.dispatch({type: 'POST_HAPPY', payload: this.state})
 }
 
 
@@ -85,15 +86,15 @@ submitHappyness = () =>{
               />
             </div>
             <div className="col">
-              <textarea
-                rows="10" 
-                cols="80"
-                id="textarea"
-                type="text" 
-                placeholder="Enter happy message here"
-                value={this.state.details}
-                onChange={(event) => this.handleChange (event, 'details')}>
-              </textarea>
+            <TextField
+              id="standard-textarea"
+              label="With placeholder multiline"
+              placeholder="Placeholder"
+              multiline
+              className={classes.textField}
+              margin="normal"
+              onChange={(event) => this.handleChange(event, 'details')}
+            />
             </div>
           </div>
               <InputLabel>
@@ -105,7 +106,6 @@ submitHappyness = () =>{
                   value={this.state.genre_id} 
                   onChange={(event) => this.handleChange(event, 'genre_id')}>
 {/* ----------------------------------------------- MAPPING OUT ARRAY OF GENRES REDUCER */}
-                  
                   {this.props.store.genreReducer.map((genre, i) =>
                       <MenuItem key={i} value={genre.id}>
                           {genre.name}
