@@ -7,7 +7,7 @@ const { rejectUnauthenticated} = require('../modules/authentication-middleware')
 
 router.get('/', rejectUnauthenticated, (req, res) => {
 let sqlText =
-    `SELECT message.image, message.details, genre.name, message.id FROM "user"
+    `SELECT message.name, message.image, message.details, genre.name, message.id FROM "user"
     JOIN message ON message.user_id = "user".id
     JOIN genre ON genre.id = message.genre_id
     WHERE "user".id = $1;`

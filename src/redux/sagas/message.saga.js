@@ -10,8 +10,23 @@ function* fetchMessage() {
         console.log('error with fetching all messages', error);
     }        
 }
+
+function* postMessage() {
+    console.log('Posting message to DB working OK');
+    try {
+        const response = yield axios.post('/api/message')
+        yield put({
+            type: 'SET_MESSAGE',
+            payload: response.data
+        })
+    } catch (error) {
+        console.log('error with fetching all messages', error);
+    }
+}
+
 function* messages() {
   yield takeLatest('FETCH_MESSAGE', fetchMessage);
+  yield takeLatest('POST_HAPPY', postMessage)
 }
 
 export default messages;

@@ -71,7 +71,7 @@ submitHappyness = () =>{
                 label="Name"
                 className={classes.textField}
                 value={this.state.name}
-                onChange={(event)=> this.handleChange(event, 'name')}
+                // onChange={(event)=> this.handleChange(event, 'name')}
                 margin="normal"
               />
               <br></br>
