@@ -53,6 +53,8 @@ cancelSubmit = () =>{
 submitHappyness = () =>{
   console.log('Submitting happyness')
   this.props.dispatch({type: 'POST_HAPPY', payload: this.state})
+  this.props.history.push('/messages');
+
 }
 
 
@@ -71,7 +73,7 @@ submitHappyness = () =>{
                 label="Name"
                 className={classes.textField}
                 value={this.state.name}
-                // onChange={(event)=> this.handleChange(event, 'name')}
+                onChange={(event)=> this.handleChange(event, 'name')}
                 margin="normal"
               />
               <br></br>
