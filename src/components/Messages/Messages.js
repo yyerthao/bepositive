@@ -76,6 +76,11 @@ handleExpandClick = () => {
   this.setState(state => ({ expanded: !state.expanded }));
 };
 
+viewMessage = (id) => {
+  this.props.dispatch({type: "GET_ONE_MESSAGE", payload: id})
+  this.props.history.push('/ViewMessage');
+}
+
   render() {
     const {messageReducer} = this.props.store;
         const { classes } = this.props;
@@ -83,6 +88,7 @@ handleExpandClick = () => {
 
     return (
       <div className="container messenger-background">
+        {JSON.stringify(messageReducer)}
           <Grid container className={classes.root} spacing={10}>
             <Grid item xs={10} >
               <Grid container className="center" spacing={(spacing)}>
@@ -111,6 +117,7 @@ handleExpandClick = () => {
                       subheader="SOME RANDOM DATE"
                     />
                     <CardMedia
+                      onClick={()=>this.viewMessage(message.id)}
                       className={classes.media}
                       image={message.image}
                       alt="Happy things"

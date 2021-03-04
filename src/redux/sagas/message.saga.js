@@ -10,6 +10,17 @@ function* fetchMessage() {
         console.log('error with fetching all messages', error);
     }        
 }
+function* getOneMessage(action) {
+    try {
+        const response = yield axios.get(`/api/message/${action.payload}`) // 
+        yield put({
+            type: 'SET_ONE_MESSAGE',
+            payload: response.data
+        })
+    } catch (error) {
+        console.log('GET ONE MSG error', error);
+    }
+}
 
 function* postMessage(action) {
     console.log('Posting message from user');
@@ -25,6 +36,7 @@ function* postMessage(action) {
 
 function* messages() {
   yield takeLatest('FETCH_MESSAGE', fetchMessage);
+  yield takeLatest('GET_ONE_MESSAGE', getOneMessage);
   yield takeLatest('POST_HAPPY', postMessage)
 }
 
