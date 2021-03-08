@@ -7,9 +7,11 @@ class ViewMessage extends Component {
 
 
   render() {
+    const {details} = this.props.store;
     return (
       <div>
         <h2>View Message Component</h2>
+        {JSON.stringify(details)}
       </div>
     );
   }

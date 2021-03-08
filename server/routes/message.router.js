@@ -43,14 +43,11 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     })
     .then(result => {
       res.send(result.rows);
-      res.sendStatus(201); 
     }).catch((error) => {
       console.log(error);
       res.sendStatus(500);
     });
 });
-
-module.exports = router;
 
 
 // ---------------------------- GET ONE SPECIFIC MESSAGE ----------------------------
@@ -58,16 +55,20 @@ module.exports = router;
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   let id = req.params.id;
   const queryText =
-    `SELECT message.name, message.image, message.details FROM message_genre
-    JOIN message ON message.id = message_genre.message_id
-    JOIN genre ON message_genre.genre_id = genre.id
-    WHERE message.id = $1`
+  `SELECT message.name, message.image, message.details FROM message_genre
+  JOIN message ON message.id = message_genre.message_id
+  JOIN genre ON message_genre.genre_id = genre.id
+  WHERE message.id = $1`
   pool.query(queryText, [id])
-    .then((result) => {
-      res.send(result.rows);
-    })
-    .catch((error) => {
-      console.log('Error inside GET ID route:', error);
-      res.sendStatus(500);
-    });
+  .then((result) => {
+    res.send(result.rows);
+  })
+  .catch((error) => {
+    console.log('Error inside GET ID route:', error);
+    res.sendStatus(500);
+  });
 });
+
+
+
+module.exports = router;

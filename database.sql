@@ -4,6 +4,14 @@ DROP TABLE message;
 DROP TABLE genre;
 DROP TABLE "user";
 
+-- restarts ids of tables 
+ALTER SEQUENCE message_id_seq RESTART WITH 1;
+ALTER SEQUENCE genre_id_seq RESTART WITH 1;
+ALTER SEQUENCE message_genre_id_seq RESTART WITH 1;
+
+
+
+
 
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
@@ -54,7 +62,37 @@ CREATE TABLE "message_genre" (
 INSERT INTO message_genre (id, message_id, genre_id) 
 VALUES (1, 1, 1);
 
-SELECT message.name, message.image, message.details, genre.name, message.id FROM "user"
-    JOIN message ON message.user_id = "user".id
-    JOIN genre ON genre.id = message.genre_id
-    WHERE "user".id = 1;
+SELECT message.name, message.image, message.details, message.id, message.genre_id AS genre  FROM "user"
+JOIN message ON message.user_id = "user".id
+LEFT JOIN genre ON genre.id = message.genre_id
+WHERE "user".id = 1;
+
+SELECT organization.id as org_id, organization.name,
+                      organization.number, organization.email, organization.city,
+                      organization.pdf, organization.website, organization.pictures,
+                      organization.description, state.description AS state,
+                      array_agg(categories_id) as categories
+                      FROM "organization"
+                      LEFT JOIN state ON state.id = "organization".state_id
+                      LEFT JOIN organization_categories ON organization.id = organization_categories.org_id
+                      WHERE organization.id = $1
+                      GROUP BY organization.id, organization.name, organization.number,
+                      organization.email, organization.city, organization.pdf,
+                      organization.website, organization.pictures, organization.description,
+                      state.description;
+
+    
+INSERT INTO "message" ("name", "image", "details", "user_id", "genre_id")
+VALUES ('Wow', 'https://www.rd.com/wp-content/uploads/2020/04/happyquotes.jpg', 'wow so cool amazing so cool', 1, 2);
+    
+    
+
+SELECT message.name, message.image, message.details FROM message_genre
+JOIN message ON message.id = message_genre.message_id
+JOIN genre ON message_genre.genre_id = genre.id
+WHERE message.id = 1;
+
+SELECT message.name, message.image, message.details FROM message_genre
+JOIN message ON message.id = message_genre.message_id
+JOIN genre ON message_genre.genre_id = genre.id
+WHERE message.id = 1;
