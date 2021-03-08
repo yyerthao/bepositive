@@ -40,9 +40,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
       INSERT INTO "message_genre" ("message_id", "genre_id")
       VALUES  ($1, $2);`;
       pool.query(messageGenreQuery, [createdMessageId, req.body.genre_id])
-    })
-    .then(result => {
-      res.send(result.rows);
     }).catch((error) => {
       console.log(error);
       res.sendStatus(500);
