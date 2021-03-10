@@ -1,4 +1,4 @@
-const details = (state = {}, action) => {
+const detailsReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_ONE_MESSAGE':
             return action.payload;
@@ -8,4 +8,4 @@ const details = (state = {}, action) => {
 };
 
 
-export default details;
+export default detailsReducer;
