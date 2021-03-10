@@ -1,6 +1,6 @@
-const messageReducer = (state = [], action) => {
+const detailsReducer = (state = [], action) => {
     switch (action.type) {
-        case 'SET_MESSAGE':
+        case 'SET_ONE_MESSAGE':
             return action.payload;
         default:
             return state;
@@ -8,4 +8,4 @@ const messageReducer = (state = [], action) => {
 };
 
 
-export default messageReducer;
+export default detailsReducer;
