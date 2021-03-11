@@ -46,13 +46,14 @@ class ViewMessage extends Component {
     })
   }
 
-  // updateDream = (id) => {
-  //   console.log('Selecting this dream to update: ', id);
-  //   this.props.dispatch({
-  //     type: 'GET_NEW_DREAM',
-  //     payload: id
-  //   });
-  //   this.props.history.push('/updateDream')
+  editMessage = (id) => {
+    console.log('Selecting this message to edit: ', id);
+    this.props.dispatch({
+      type: 'EDIT_MESSAGE',
+      payload: id
+    });
+    // this.props.history.push('/messages')
+  }
 
 
 
@@ -62,7 +63,8 @@ class ViewMessage extends Component {
       const {detailsReducer} = this.props.store;
       return(
         <div className="container">
-          {JSON.stringify(detailsReducer)}
+          {/* {JSON.stringify(detailsReducer)} */}
+          <center>
           <Paper className={classes.root} elevation={1}>
           {detailsReducer.map((details, i) => {
             return(
@@ -71,14 +73,20 @@ class ViewMessage extends Component {
                 <img src={details.image} alt="happy things"></img>
                 <p>Details: {details.details}</p>
                 <button onClick={()=>this.deleteMessage(details.id)}>Delete Message</button>
+                <br></br>
+                <br></br>
+                <button onClick={()=> this.editMessage(details.id)}>Edit</button>
+                <br></br>
               </div>
             )
           })}
           </Paper>
+          </center>
       </div>
     )
   }
 }
+
 
 ViewMessage.propTypes = {
   classes: PropTypes.object.isRequired,
