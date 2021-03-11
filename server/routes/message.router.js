@@ -50,21 +50,40 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 // ---------------------------- GET ONE SPECIFIC MESSAGE ----------------------------
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-  let id = req.params.id;
-  const queryText =
-  `SELECT message.name, message.image, message.details FROM message_genre
-  JOIN message ON message.id = message_genre.message_id
-  JOIN genre ON message_genre.genre_id = genre.id
-  WHERE message.id = $1`
-  pool.query(queryText, [id])
-  .then((result) => {
-    res.send(result.rows);
-  })
-  .catch((error) => {
-    console.log('Error inside GET ID route:', error);
-    res.sendStatus(500);
+    let id = req.params.id;
+    const queryText =
+    `SELECT message.name, message.image, message.details, message.id FROM message_genre
+    JOIN message ON message.id = message_genre.message_id
+    JOIN genre ON message_genre.genre_id = genre.id
+    WHERE message.id = $1`
+    pool.query(queryText, [id])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log('Error inside GET ID route:', error);
+      res.sendStatus(500);
+    });
   });
-});
+// ---------------------------- DELETE ONE SPECIFIC MESSAGE ----------------------------
+
+  router.delete('/:id', rejectUnauthenticated, (req, res) => {
+    let id = req.params.id
+    console.log('ID of message to delete', id);
+    const sqlText = 'DELETE FROM "message" WHERE id=$1';
+    pool.query(sqlText, [id])
+      .then(() => {
+        res.sendStatus(200);
+      })
+      .catch((err) => {
+        console.log('Error completing DELETE query', err);
+        res.sendStatus(500);
+      });
+  });
+
+
+
+
 
 
 

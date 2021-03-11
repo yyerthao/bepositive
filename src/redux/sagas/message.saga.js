@@ -34,10 +34,25 @@ function* postMessage(action) {
 }
 
 
+function* deleteMessage(action) {
+    console.log('DELETING message from user', action.payload); 
+    try {
+        yield axios.delete(`api/message/${action.payload}`);
+        console.log('Message you are trying to delete', action.payload)
+    } catch (error) {
+        console.log('DELETE ROUTE error', error);
+    }
+}
+
+// delete function 
+
+
+
 function* messages() {
   yield takeLatest('FETCH_MESSAGE', fetchMessage);
   yield takeLatest('GET_ONE_MESSAGE', getOneMessage);
   yield takeLatest('POST_HAPPY', postMessage)
+  yield takeLatest('DELETE_MESSAGE', deleteMessage)
 }
 
 export default messages;

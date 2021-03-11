@@ -88,7 +88,7 @@ viewMessage = (id) => {
 
     return (
       <div className="container messenger-background">
-        {/* {JSON.stringify(messageReducer)} */}
+        {JSON.stringify(messageReducer)}
           <Grid container className={classes.root} spacing={10}>
             <Grid item xs={10} >
               <Grid container className="center" spacing={(spacing)}>

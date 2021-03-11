@@ -32,12 +32,12 @@ class ViewMessage extends Component {
     }).then((result) => {
       if (result.isConfirmed) {
         this.props.dispatch({
-          type: 'DELETE_DREAM',
+          type: 'DELETE_MESSAGE',
           payload: id
         })
         Swal.fire(
           'Deleted!',
-          'Your dream has been deleted.',
+          'Your message has been deleted.',
           'success'
         )
         // dispatch to delete dream in here
@@ -55,11 +55,14 @@ class ViewMessage extends Component {
   //   this.props.history.push('/updateDream')
 
 
+
+
   render(props){
     const { classes } = this.props;
       const {detailsReducer} = this.props.store;
       return(
         <div className="container">
+          {JSON.stringify(detailsReducer)}
           <Paper className={classes.root} elevation={1}>
           {detailsReducer.map((details, i) => {
             return(
@@ -67,8 +70,7 @@ class ViewMessage extends Component {
                 <p>Name: {details.name}</p>
                 <img src={details.image} alt="happy things"></img>
                 <p>Details: {details.details}</p>
-                {/* <button onClick={this.deleteMessage(detailsReducer.id)}>Delete Message</button> */}
-                <button>Delete</button>
+                <button onClick={()=>this.deleteMessage(details.id)}>Delete Message</button>
               </div>
             )
           })}
