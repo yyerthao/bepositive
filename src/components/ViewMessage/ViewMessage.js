@@ -10,8 +10,8 @@ import PropTypes from 'prop-types';
 const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
+    paddingTop: theme.spacing() * 2,
+    paddingBottom: theme.spacing() * 2,
   },
 });
 
@@ -46,13 +46,14 @@ class ViewMessage extends Component {
     })
   }
 
-  // updateDream = (id) => {
-  //   console.log('Selecting this dream to update: ', id);
-  //   this.props.dispatch({
-  //     type: 'GET_NEW_DREAM',
-  //     payload: id
-  //   });
-  //   this.props.history.push('/updateDream')
+  editMessage = (id) => {
+    console.log('Selecting this message to edit: ', id);
+    // this.props.dispatch({
+    //   type: 'EDIT_MESSAGE',
+    //   payload: id
+    // });
+    // this.props.history.push('/messages')
+  }
 
 
 
@@ -62,23 +63,30 @@ class ViewMessage extends Component {
       const {detailsReducer} = this.props.store;
       return(
         <div className="container">
-          {JSON.stringify(detailsReducer)}
+          {/* {JSON.stringify(detailsReducer)} */}
+          <center>
           <Paper className={classes.root} elevation={1}>
           {detailsReducer.map((details, i) => {
             return(
               <div key={i}>
                 <p>Name: {details.name}</p>
-                <img src={details.image} alt="happy things"></img>
+                <img src={details.image} alt="happy things" className="image-size"></img>
                 <p>Details: {details.details}</p>
                 <button onClick={()=>this.deleteMessage(details.id)}>Delete Message</button>
+                <br></br>
+                <br></br>
+                <button onClick={()=> this.editMessage(details.id)}>Edit</button>
+                <br></br>
               </div>
             )
           })}
           </Paper>
+          </center>
       </div>
     )
   }
 }
+
 
 ViewMessage.propTypes = {
   classes: PropTypes.object.isRequired,
