@@ -48,10 +48,10 @@ class ViewMessage extends Component {
 
   editMessage = (id) => {
     console.log('Selecting this message to edit: ', id);
-    this.props.dispatch({
-      type: 'EDIT_MESSAGE',
-      payload: id
-    });
+    // this.props.dispatch({
+    //   type: 'EDIT_MESSAGE',
+    //   payload: id
+    // });
     // this.props.history.push('/messages')
   }
 
@@ -70,7 +70,7 @@ class ViewMessage extends Component {
             return(
               <div key={i}>
                 <p>Name: {details.name}</p>
-                <img src={details.image} alt="happy things"></img>
+                <img src={details.image} alt="happy things" className="image-size"></img>
                 <p>Details: {details.details}</p>
                 <button onClick={()=>this.deleteMessage(details.id)}>Delete Message</button>
                 <br></br>

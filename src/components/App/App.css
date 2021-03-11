@@ -125,3 +125,10 @@ Flex Grid
 .col{
   flex: 1;
 }
+
+.image-size{
+    height: auto;
+    max-height: 250px;
+    width: auto;
+    max-width: 250px;
+}
