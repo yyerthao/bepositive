@@ -106,7 +106,8 @@ submitHappyness = () =>{
               <Select 
                   style={{width: '10rem'}}
                   className="dropdown"
-                  defaultValue={this.state.genreReducer_id} 
+                  defaultValue= ""
+                //   value={this.state.genreReducer_id} 
                   onChange={(event) => this.handleChange(event, 'genre_id')}>
 {/* ----------------------------------------------- MAPPING OUT ARRAY OF GENRES REDUCER */}
                   {this.props.store.genreReducer.map((genre, i) =>
