@@ -82,30 +82,40 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   });
 
 
+// ---------------------------- UPDATE ONE SPECIFIC MESSAGE ----------------------------
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  console.log('Inside put route server side');
-  let messageID = req.params.id;
-  let userID = req.user.id;
-  console.log('ID of message', messageID);
-  console.log('ID of user:', userID);
-  let queryText = 
-  `UPDATE "message"
-  SET
-    "name" = $1,
-    "image" = $2,
-    "details" =$3,
-    "user_id" = $4,
-    "genre_id" = $5
-  WHERE message.id = $6;`;
-  pool.query(queryText, [req.body.name, req.body.image, req.body.details, userID, req.body.genre_id, messageID])
-  .then(result=> {
-    console.log('Updated message fine', result)
-    res.sendStatus(201); //do 201 
+    console.log('Inside put route server side');
+    let messageID = req.params.id;
+    let userID = req.user.id;
+    console.log('ID of message', messageID);
+    console.log('ID of user:', userID);
+    let queryText = 
+    `UPDATE "message" SET
+      "name" = $1,
+      "image" = $2,
+      "details" =$3,
+      "user_id" = $4,
+      "genre_id" = $5
+    WHERE message.id = $6;`;
+    pool.query(queryText, [req.body.name, req.body.image, req.body.details, userID, req.body.genre_id, messageID])
+    .then((result) => {
+      console.log('UPDATE RESULT: ', result)
+      console.log('UPDATE RESULT.ROWS: ', result.rows); 
+      let updatedMessageQuery = `
+        UPDATE "message_genre"
+        SET "genre_id" = $1
+        WHERE message_id = $2;
+      `; 
+      pool.query(updatedMessageQuery, [req.body.genre_id, messageID])
+    })
+    .then(result => {
+      console.log('MESSAGE UPDATED AND BACK FROM DB');
+      res.sendStatus(201); //do 201 
     }).catch((error) => {
-    console.log(error);
-    res.sendStatus(500);
-  });
-  });
+      console.log(error);
+      res.sendStatus(500);
+    });
+});
   
 
 

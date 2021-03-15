@@ -49,11 +49,10 @@ cancelSubmit = () =>{
   console.log('Cancelling submit')
 }
 
-submitHappyness = () =>{
+submitHappyness = (messageID) =>{
   console.log('Submitting happyness')
-  this.props.dispatch({type: 'POST_HAPPY', payload: this.state})
+  this.props.dispatch({type: 'UPDATE_DREAM', payload: {id: messageID, messageDetails: this.state}});
   this.props.history.push('/messages');
-
 }
 
 
@@ -117,7 +116,7 @@ submitHappyness = () =>{
               </Select>
           <br></br>           
           <br></br>           
-          <button onClick={this.submitHappyness}>Share happyness</button>
+          <button onClick={this.submitHappyness}>Save</button>
           <br></br>           
           <br></br>  
           <button onClick={this.cancelSubmit}>Cancel</button>
