@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AddHappy from '../AddHappy/AddHappy';
 import ViewMessage from '../ViewMessage/ViewMessage';
+import EditMessage from '../EditMessage/EditMessage';
 
 
 import './App.css';
@@ -77,6 +78,13 @@ class App extends Component {
               exact
               path="/ViewMessage"
               component={ViewMessage}
+            />
+
+            <ProtectedRoute
+              // logged in shows InfoPage else shows LoginPage
+              exact
+              path="/EditMessage"
+              component={EditMessage}
             />
 
             {/* When a value is supplied for the authRedirect prop the user will

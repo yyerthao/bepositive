@@ -20,7 +20,6 @@ class ViewMessage extends Component {
 
   deleteMessage = (id) => {
     console.log('Deleting message with id # ', id)
-    // will be dispatching action for delete route here
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -40,7 +39,6 @@ class ViewMessage extends Component {
           'Your message has been deleted.',
           'success'
         )
-        // dispatch to delete dream in here
       }
       this.props.history.push('/messages')
     })
@@ -48,11 +46,11 @@ class ViewMessage extends Component {
 
   editMessage = (id) => {
     console.log('Selecting this message to edit: ', id);
-    // this.props.dispatch({
-    //   type: 'EDIT_MESSAGE',
-    //   payload: id
-    // });
-    // this.props.history.push('/messages')
+    this.props.dispatch({
+      type: 'EDIT_MESSAGE',
+      payload: id
+    });
+    this.props.history.push('/EditMessage')
   }
 
 
@@ -63,7 +61,6 @@ class ViewMessage extends Component {
       const {detailsReducer} = this.props.store;
       return(
         <div className="container">
-          {/* {JSON.stringify(detailsReducer)} */}
           <center>
           <Paper className={classes.root} elevation={1}>
           {detailsReducer.map((details, i) => {
