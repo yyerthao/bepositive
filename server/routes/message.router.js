@@ -82,6 +82,31 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   });
 
 
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  console.log('Inside put route server side');
+  let messageID = req.params.id;
+  let userID = req.user.id;
+  console.log('ID of message', messageID);
+  console.log('ID of user:', userID);
+  let queryText = 
+  `UPDATE "message"
+  SET
+    "name" = $1,
+    "image" = $2,
+    "details" =$3,
+    "user_id" = $4,
+    "genre_id" = $5
+  WHERE message.id = $6;`;
+  pool.query(queryText, [req.body.name, req.body.image, req.body.details, userID, req.body.genre_id, messageID])
+  .then(result=> {
+    console.log('Updated message fine', result)
+    res.sendStatus(201); //do 201 
+    }).catch((error) => {
+    console.log(error);
+    res.sendStatus(500);
+  });
+  });
+  
 
 
 

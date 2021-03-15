@@ -44,15 +44,28 @@ function* deleteMessage(action) {
     }
 }
 
-// delete function 
+function* updateMessage(action) {
+    console.log('UPDATING message from user', action.payload);
+    try {
+        yield axios.put(`/api/message/${action.payload.id}`, action.payload);
+        console.log('Details of message you are trying to update:', action.payload)
+        console.log('This is the ID NEW message sent to DB', action.payload.id);
+        yield put({
+            type: 'FETCH_MESSAGE'
+        });
+    } catch (error) {
+        console.log('PUT ROUTE error', error);
+    }
+}
 
 
 
 function* messages() {
   yield takeLatest('FETCH_MESSAGE', fetchMessage);
   yield takeLatest('GET_ONE_MESSAGE', getOneMessage);
-  yield takeLatest('POST_HAPPY', postMessage)
-  yield takeLatest('DELETE_MESSAGE', deleteMessage)
+  yield takeLatest('POST_HAPPY', postMessage);
+  yield takeLatest('DELETE_MESSAGE', deleteMessage);
+  yield takeLatest('UPDATE_MESSAGE', updateMessage)
 }
 
 export default messages;
