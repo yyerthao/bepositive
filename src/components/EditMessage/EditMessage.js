@@ -85,6 +85,8 @@ submitHappyness = () =>{
                 onChange={(event)=> this.handleChange(event, 'image')}
                 margin="normal"
               />
+              <br></br>
+              <br></br>
             </div>
             <div className="col">
             <TextField
