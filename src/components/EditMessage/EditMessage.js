@@ -89,7 +89,7 @@ submitHappyness = () =>{
             <div className="col">
             <TextField
               id="standard-textarea"
-              label="With placeholder multiline"
+              label="Details of happyness"
               placeholder="Placeholder"
               multiline
               className={classes.textField}
@@ -104,7 +104,7 @@ submitHappyness = () =>{
               <Select 
                   style={{width: '10rem'}}
                   className="dropdown"
-                  value={this.state.genreReducer_id} 
+                  defaultValue={this.state.genreReducer_id} 
                   onChange={(event) => this.handleChange(event, 'genre_id')}>
 {/* ----------------------------------------------- MAPPING OUT ARRAY OF GENRES REDUCER */}
                   {this.props.store.genreReducer.map((genre, i) =>
