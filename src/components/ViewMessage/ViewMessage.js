@@ -5,7 +5,13 @@ import Swal from 'sweetalert2';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   root: {
@@ -13,6 +19,12 @@ const styles = theme => ({
     paddingTop: theme.spacing() * 2,
     paddingBottom: theme.spacing() * 2,
   },
+  card: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
+  }
 });
 
 
@@ -64,16 +76,51 @@ class ViewMessage extends Component {
           {JSON.stringify(detailsReducer)}
           <center>
           <Paper className={classes.root} elevation={1}>
-              <div>
+          <Card className={classes.card}>
+                  <CardActionArea>
+                    <CardMedia
+                      // onClick={()=> this.selectDream(detailsReducer.id)}
+                      className={classes.media}
+                      image={detailsReducer.image}
+                      title={detailsReducer.title}
+                      // value={spacing}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {detailsReducer.name}
+                      </Typography>
+                      <Typography component="p">
+                        {detailsReducer.details}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                    <Button size="small" color="primary"
+                    onClick={()=> this.deleteMessage(detailsReducer[0].id)}>
+                      Delete Message
+                    </Button>
+                  </CardActions>
+                  <CardActions>
+                    <Button size="small" color="primary"
+                    onClick={()=> this.editMessage(detailsReducer[0].id)}>
+                      Edit Message
+                    </Button>
+                  </CardActions>
+              </Card>
+
+{/* 
+
+            
+              <Card>
                 <p>Name: {detailsReducer.name}</p>
                 <img src={detailsReducer.image} alt="Happy things" className="image-size"/>
                 <p>Details: {detailsReducer.details}</p>
                 <Button variant="contained" color="secondary" onClick={()=>this.deleteMessage(detailsReducer[0].id)}>Delete Message</Button>
                 <br></br>
                 <br></br>
-                <Button variant="contained" color="primary" onClick={()=> this.editMessage(detailsReducer[0].id)}>Edit</Button>
+                <Button variant="contained" color="primary" onClick={()=> this.editMessage(detailsReducer.id)}>Edit</Button>
                 <br></br>
-              </div>
+              </Card> */}
           </Paper>
           </center>
       </div>

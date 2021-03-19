@@ -64,29 +64,24 @@ updateHappy = (messageId) =>{
 
 
   render() {
-    const {classes} = this.props;
     const {detailsReducer} = this.props.store;
     return (
       <div className="container">
         <center>
           <h2>Edit Happyness</h2>
-        </center>
-        This is what is inside the detailsReducer
-        {JSON.stringify(detailsReducer)};
-        This is state
-        {JSON.stringify(this.state)}
-          <div className="flex-grid">
-            <div className="col">
           <br></br>           
-          <br></br>           
+          <br></br> 
             <TextField
+              label="Name"
               placeholder={this.state.name}
               multiline
               value={this.state.name}
               onChange={(event)=> this.handleChange(event, 'name')}
             />
             <br></br>
+            <br></br>
             <TextField
+              label="Image Url"
               placeholder={this.state.image}
               multiline
               value={this.state.image}
@@ -94,15 +89,12 @@ updateHappy = (messageId) =>{
             />
             <br></br>
             <br></br>
-          </div>
-          <div className="col">
           <TextField
+            label="Details"
             value={this.state.details}
             multiline
             onChange={(event) => this.handleChange(event, 'details')}
           />
-          </div>
-        </div>
               <InputLabel>
                   Genre
               </InputLabel>
@@ -122,11 +114,7 @@ updateHappy = (messageId) =>{
           <br></br>           
           <br></br>  
           <button onClick={this.cancelSubmit}>Cancel</button>
-
-
-
-
-
+        </center>
       </div>
     );
   }

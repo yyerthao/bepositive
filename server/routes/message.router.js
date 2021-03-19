@@ -85,7 +85,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 // ---------------------------- UPDATE ONE SPECIFIC MESSAGE ----------------------------
 router.put('/:id', rejectUnauthenticated, (req, res) => {
     console.log('Inside put route server side');
-    let messageID = req.params.id;
+    let messageID = req.body;
     let userID = req.user.id;
     console.log('ID of message', messageID);
     console.log('ID of user:', userID);
