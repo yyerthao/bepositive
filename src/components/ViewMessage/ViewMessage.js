@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
-
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   root: {
@@ -20,7 +20,6 @@ class ViewMessage extends Component {
 
   deleteMessage = (id) => {
     console.log('Deleting message with id # ', id)
-    // will be dispatching action for delete route here
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -40,19 +39,18 @@ class ViewMessage extends Component {
           'Your message has been deleted.',
           'success'
         )
-        // dispatch to delete dream in here
       }
       this.props.history.push('/messages')
     })
   }
 
-  editMessage = (id) => {
-    console.log('Selecting this message to edit: ', id);
-    // this.props.dispatch({
-    //   type: 'EDIT_MESSAGE',
-    //   payload: id
-    // });
-    // this.props.history.push('/messages')
+  editMessage = (messageID) => {
+    console.log('Selecting this message to edit: ', messageID);
+    this.props.dispatch({
+      type: 'EDIT_MESSAGE',
+      payload: messageID
+    });
+    this.props.history.push('/EditMessage')
   }
 
 
@@ -63,23 +61,19 @@ class ViewMessage extends Component {
       const {detailsReducer} = this.props.store;
       return(
         <div className="container">
-          {/* {JSON.stringify(detailsReducer)} */}
+          {JSON.stringify(detailsReducer)}
           <center>
           <Paper className={classes.root} elevation={1}>
-          {detailsReducer.map((details, i) => {
-            return(
-              <div key={i}>
-                <p>Name: {details.name}</p>
-                <img src={details.image} alt="happy things" className="image-size"></img>
-                <p>Details: {details.details}</p>
-                <button onClick={()=>this.deleteMessage(details.id)}>Delete Message</button>
+              <div>
+                <p>Name: {detailsReducer.name}</p>
+                <img src={detailsReducer.image} alt="Happy things" className="image-size"/>
+                <p>Details: {detailsReducer.details}</p>
+                <Button variant="contained" color="secondary" onClick={()=>this.deleteMessage(detailsReducer[0].id)}>Delete Message</Button>
                 <br></br>
                 <br></br>
-                <button onClick={()=> this.editMessage(details.id)}>Edit</button>
+                <Button variant="contained" color="primary" onClick={()=> this.editMessage(detailsReducer[0].id)}>Edit</Button>
                 <br></br>
               </div>
-            )
-          })}
           </Paper>
           </center>
       </div>

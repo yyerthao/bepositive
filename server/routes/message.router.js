@@ -67,21 +67,58 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   });
 // ---------------------------- DELETE ONE SPECIFIC MESSAGE ----------------------------
 
-  router.delete('/:id', rejectUnauthenticated, (req, res) => {
-    let id = req.params.id
-    console.log('ID of message to delete', id);
-    const sqlText = 'DELETE FROM "message" WHERE id=$1';
-    pool.query(sqlText, [id])
-      .then(() => {
-        res.sendStatus(200);
-      })
-      .catch((err) => {
-        console.log('Error completing DELETE query', err);
-        res.sendStatus(500);
-      });
-  });
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  let id = req.params.id
+  console.log('ID of message to delete', id);
+  const sqlText = `DELETE FROM "message" WHERE id=$1`;
+  pool.query(sqlText, [id])
+    .then(() => {
+      res.sendStatus(200);
+      console.log('Deleted successfully')
+    })
+    .catch((err) => {
+      console.log('Error completing DELETE query', err);
+      res.sendStatus(500);
+    });
+});
 
-
+// ---------------------------- UPDATE ONE SPECIFIC MESSAGE ----------------------------
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+    console.log('Inside put route server side');
+    let messageID = req.params.id;
+    let userID = req.user.id;
+    console.log('ID of message', messageID);
+    console.log('ID of user:', userID);
+    let queryText = 
+    `UPDATE "message" SET
+      "name" = $1,
+      "image" = $2,
+      "details" =$3,
+      "user_id" = $4,
+      "genre_id" = $5
+      WHERE message.id = $6
+      RETURNING message.id;`;
+    pool.query(queryText, [req.body.name, req.body.image, req.body.details, userID, req.body.genre_id, messageID])
+    .then((result) => {
+      console.log('UPDATE RESULT: ', result)
+      console.log('UPDATE RESULT ROWS: ', result.rows);
+      let updatedMessageQuery = `
+        UPDATE "message_genre"
+        SET "genre_id" = $1
+        WHERE message_id = $2;
+      `; 
+      pool.query(updatedMessageQuery, [req.body.genre_id, messageID])
+    })
+    .then(result => {
+      console.log('MESSAGE UPDATED AND BACK FROM DB', result);
+      // res.send(result.rows);
+      res.sendStatus(201); //do 201 
+    }).catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+});
+  
 
 
 
