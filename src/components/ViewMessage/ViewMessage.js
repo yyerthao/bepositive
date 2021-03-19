@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
-
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   root: {
@@ -44,11 +44,11 @@ class ViewMessage extends Component {
     })
   }
 
-  editMessage = (id) => {
-    console.log('Selecting this message to edit: ', id);
+  editMessage = (messageID) => {
+    console.log('Selecting this message to edit: ', messageID);
     this.props.dispatch({
       type: 'EDIT_MESSAGE',
-      payload: id
+      payload: messageID
     });
     this.props.history.push('/EditMessage')
   }
@@ -68,10 +68,10 @@ class ViewMessage extends Component {
                 <p>Name: {detailsReducer.name}</p>
                 <img src={detailsReducer.image} alt="Happy things" className="image-size"/>
                 <p>Details: {detailsReducer.details}</p>
-                <button onClick={()=>this.deleteMessage(detailsReducer[0].id)}>Delete Message</button>
+                <Button variant="contained" color="secondary" onClick={()=>this.deleteMessage(detailsReducer[0].id)}>Delete Message</Button>
                 <br></br>
                 <br></br>
-                <button onClick={()=> this.editMessage(detailsReducer.id)}>Edit</button>
+                <Button variant="contained" color="primary" onClick={()=> this.editMessage(detailsReducer[0].id)}>Edit</Button>
                 <br></br>
               </div>
           </Paper>
