@@ -61,22 +61,19 @@ class ViewMessage extends Component {
       const {detailsReducer} = this.props.store;
       return(
         <div className="container">
+          {JSON.stringify(detailsReducer)}
           <center>
           <Paper className={classes.root} elevation={1}>
-          {detailsReducer.map((details, i) => {
-            return(
-              <div key={i}>
-                <p>Name: {details.name}</p>
-                <img src={details.image} alt="happy things" className="image-size"></img>
-                <p>Details: {details.details}</p>
-                <button onClick={()=>this.deleteMessage(details.id)}>Delete Message</button>
+              <div>
+                <p>Name: {detailsReducer.name}</p>
+                <img src={detailsReducer.image} alt="Happy things" className="image-size"/>
+                <p>Details: {detailsReducer.details}</p>
+                <button onClick={()=>this.deleteMessage(detailsReducer[0].id)}>Delete Message</button>
                 <br></br>
                 <br></br>
-                <button onClick={()=> this.editMessage(details.id)}>Edit</button>
+                <button onClick={()=> this.editMessage(detailsReducer.id)}>Edit</button>
                 <br></br>
               </div>
-            )
-          })}
           </Paper>
           </center>
       </div>

@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
+// import { FormControl } from '@material-ui/core';
 
 
 
@@ -35,6 +36,12 @@ class EditMessage extends Component {
 
 componentDidMount(){
   this.props.dispatch({type: 'FETCH_GENRES'})
+    this.setState({
+        name: this.props.store.detailsReducer.name,
+        image: this.props.store.detailsReducer.image,
+        details: this.props.store.detailsReducer.details,
+        genre_id: this.props.store.genreReducer.genre_id,
+    })
 }
 
 handleChange = (event, input) => {
@@ -51,54 +58,58 @@ cancelSubmit = () =>{
 
 submitHappyness = (messageID) =>{
   console.log('Submitting happyness')
-  this.props.dispatch({type: 'UPDATE_DREAM', payload: {id: messageID, messageDetails: this.state}});
+  this.props.dispatch({type: 'UPDATE_MESSAGE', payload: {id: messageID, messageDetails: this.state}});
   this.props.history.push('/messages');
 }
 
 
   render() {
     const {classes} = this.props;
+    const {detailsReducer} = this.props.store;
     return (
       <div className="container">
         <center>
           <h2>Edit Happyness</h2>
         </center>
+        {JSON.stringify(detailsReducer)};
           <div className="flex-grid">
             <div className="col">
-              <TextField
-                style={{width: '25rem'}}
-                id="standard-name"
-                label="Name"
-                className={classes.textField}
-                value={this.state.name}
-                onChange={(event)=> this.handleChange(event, 'name')}
-                margin="normal"
-              />
-              <br></br>
-              <TextField
-                style={{width: '25rem'}}
-                id="standard-image"
-                label="Image Url"
-                className={classes.textField}
-                value={this.state.image}
-                onChange={(event)=> this.handleChange(event, 'image')}
-                margin="normal"
-              />
-              <br></br>
-              <br></br>
-            </div>
-            <div className="col">
+          <br></br>           
+          <br></br>           
             <TextField
-              id="standard-textarea"
-              label="Details of happyness"
-              placeholder="Placeholder"
-              multiline
+              style={{width: '25rem'}}
+              id="standard-name"
+              label="Name"
               className={classes.textField}
+              value={this.state.name}
+              onChange={(event)=> this.handleChange(event, 'name')}
               margin="normal"
-              onChange={(event) => this.handleChange(event, 'details')}
             />
-            </div>
+            <br></br>
+            <TextField
+              style={{width: '25rem'}}
+              id="standard-image"
+              label="Image Url"
+              className={classes.textField}
+              value={this.state.image}
+              onChange={(event)=> this.handleChange(event, 'image')}
+              margin="normal"
+            />
+            <br></br>
+            <br></br>
           </div>
+          <div className="col">
+          <TextField
+            id="standard-textarea"
+            label="Details of happyness"
+            placeholder="Placeholder"
+            multiline
+            className={classes.textField}
+            margin="normal"
+            onChange={(event) => this.handleChange(event, 'details')}
+          />
+          </div>
+        </div>
               <InputLabel>
                   Genre
               </InputLabel>
@@ -114,8 +125,6 @@ submitHappyness = (messageID) =>{
                           {genre.name}
                       </MenuItem>)}
               </Select>
-          <br></br>           
-          <br></br>           
           <button onClick={this.submitHappyness}>Save</button>
           <br></br>           
           <br></br>  
