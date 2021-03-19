@@ -37,10 +37,10 @@ class EditMessage extends Component {
 componentDidMount(){
   this.props.dispatch({type: 'FETCH_GENRES'})
   this.setState({
-    name: this.props.store.detailsReducer.name,
-    image: this.props.store.detailsReducer.image,
-    details: this.props.store.detailsReducer.details,
-    genre_id: this.props.store.detailsReducer.genre_id
+    name: this.props.store.detailsReducer[0].name,
+    image: this.props.store.detailsReducer[0].image,
+    details: this.props.store.detailsReducer[0].details,
+    genre_id: this.props.store.detailsReducer[0].genre_id
   })
 }
 
@@ -73,6 +73,8 @@ updateHappy = (messageId) =>{
         </center>
         This is what is inside the detailsReducer
         {JSON.stringify(detailsReducer)};
+        This is state
+        {JSON.stringify(this.state)}
           <div className="flex-grid">
             <div className="col">
           <br></br>           
