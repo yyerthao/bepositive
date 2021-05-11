@@ -3,15 +3,17 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Swal from 'sweetalert2';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import PropTypes from 'prop-types';
+// import Paper from '@material-ui/core/Paper';
+// import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
-// import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+
+
 
 const styles = theme => ({
   root: {
@@ -24,6 +26,9 @@ const styles = theme => ({
   },
   media: {
     height: 140,
+  },
+  button: {
+    margin: theme.spacing.unit,
   }
 });
 
@@ -68,67 +73,43 @@ class ViewMessage extends Component {
 
 
 
-  render(props){
+  render(){
     const { classes } = this.props;
       const {detailsReducer} = this.props.store;
       return(
         <div className="container">
           {JSON.stringify(detailsReducer)}
-          <center>
-          <Paper className={classes.root} elevation={1}>
-          <Card className={classes.card}>
-                  {/* <CardActionArea> */}
-                    <CardMedia
-                      className={classes.media}
-                      image={detailsReducer.image}
-                      title={detailsReducer.title}
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        {detailsReducer.name}
-                      </Typography>
-                      <Typography component="p">
-                        {detailsReducer.details}
-                      </Typography>
-                    </CardContent>
-                  {/* </CardActionArea> */}
+            <center>
+              {detailsReducer.map((details, i)=> {
+                return(
+                  <Card className={classes.card} key={i}>
+                     <CardActionArea>
+                    <p>Name: {detailsReducer.name}</p>
+                      <CardMedia>
+                        <img src={detailsReducer.image} alt="Happy things" className="image-size"/>
+                      </CardMedia>
+                  </CardActionArea>
+                  <CardContent>
+                    <Typography>
+                      Details: {detailsReducer.details}
+                    </Typography>
+                  </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary"
-                    onClick={()=> this.deleteMessage(detailsReducer[0].id)}>
-                      Delete Message
-                    </Button>
+                    <Button variant="contained" color="secondary" onClick={()=>this.deleteMessage(detailsReducer[0].id)}>Delete Message</Button>
+                    <br></br>
+                    <br></br>
+                    <Button variant="contained" color="primary" onClick={()=> this.editMessage(detailsReducer[0].id)}>Edit</Button>
+                    <br></br>
                   </CardActions>
-                  <CardActions>
-                    <Button size="small" color="primary"
-                    onClick={()=> this.editMessage(detailsReducer[0].id)}>
-                      Edit Message
-                    </Button>
-                  </CardActions>
-              </Card>
-
-{/* 
-
-            
-              <Card>
-                <p>Name: {detailsReducer.name}</p>
-                <img src={detailsReducer.image} alt="Happy things" className="image-size"/>
-                <p>Details: {detailsReducer.details}</p>
-                <Button variant="contained" color="secondary" onClick={()=>this.deleteMessage(detailsReducer[0].id)}>Delete Message</Button>
-                <br></br>
-                <br></br>
-                <Button variant="contained" color="primary" onClick={()=> this.editMessage(detailsReducer.id)}>Edit</Button>
-                <br></br>
-              </Card> */}
-          </Paper>
-          </center>
+                </Card>
+                  )
+                })}
+            </center>
       </div>
     )
   }
 }
 
 
-ViewMessage.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default connect(mapStoreToProps)(withStyles(styles)(ViewMessage));

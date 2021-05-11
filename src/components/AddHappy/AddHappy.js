@@ -7,6 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 // import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
+import Button from '@material-ui/core/Button';
 
 
 
@@ -22,7 +23,10 @@ const styles = theme => ({
   },
   dense: {
     marginTop: 19,
-  }
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
 });
 
 
@@ -115,10 +119,10 @@ submitHappyness = () =>{
               </Select>
           <br></br>           
           <br></br>           
-          <button onClick={this.submitHappyness}>Share happyness</button>
+          <Button variant="contained" color="primary" className={classes.button} onClick={this.submitHappyness}>Share happyness</Button>
           <br></br>           
           <br></br>  
-          <button onClick={this.cancelSubmit}>Cancel</button>
+          <Button variant="contained" color="secondary" className={classes.button} onClick={this.cancelSubmit}>Cancel</Button>
 
 
 

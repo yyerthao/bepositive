@@ -59,6 +59,12 @@ cancelSubmit = () =>{
 updateHappy = (messageId) =>{
   console.log('Submitting happyness')
   this.props.dispatch({type: 'UPDATE_MESSAGE', payload: {id: messageId, messageDetails: this.state}});
+    this.setState({
+      name: '',
+      image: '',
+      details: '',
+      genre_id: ''
+    })
   this.props.history.push('/messages');
 }
 
@@ -115,6 +121,7 @@ updateHappy = (messageId) =>{
           <br></br>  
           <button onClick={this.cancelSubmit}>Cancel</button>
         </center>
+        {JSON.stringify(detailsReducer.id)}
       </div>
     );
   }
